@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
     title: "CONTACTO",
@@ -21,7 +22,7 @@ const contactMethods = [
                 <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={1.5}
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
             </svg>
@@ -51,51 +52,57 @@ const contactMethods = [
 
 export default function ContactPage() {
     return (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-            <header className="mb-12">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-                    CONTACTO
-                </h1>
-                <p className="text-foreground/60 max-w-2xl">
-                    ¿Tienes un proyecto en mente o simplemente quieres saludar? No dudes
-                    en escribirme. Respondo normalmente en 24-48 horas.
-                </p>
-            </header>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <Reveal>
+                <header className="mb-12">
+                    <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-100">
+                        CONTACTO
+                    </h1>
+                    <p className="text-slate-400 max-w-2xl">
+                        ¿Tienes un proyecto en mente o simplemente quieres saludar? No dudes
+                        en escribirme. Respondo normalmente en 24-48 horas.
+                    </p>
+                </header>
+            </Reveal>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {contactMethods.map((method) => (
-                    <a
-                        key={method.label}
-                        href={method.href}
-                        target={method.href.startsWith("mailto") ? undefined : "_blank"}
-                        rel={method.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                        className="group flex items-start gap-4 p-6 border border-foreground/10 rounded-lg hover:border-foreground/20 transition-colors"
-                    >
-                        <div className="text-foreground/60 group-hover:text-foreground transition-colors">
-                            {method.icon}
-                        </div>
-                        <div>
-                            <h2 className="font-semibold mb-1">{method.label}</h2>
-                            <p className="text-sm text-foreground/60">{method.value}</p>
-                        </div>
-                    </a>
-                ))}
-            </div>
+            <Reveal delay={0.1}>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {contactMethods.map((method) => (
+                        <a
+                            key={method.label}
+                            href={method.href}
+                            target={method.href.startsWith("mailto") ? undefined : "_blank"}
+                            rel={method.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                            className="group flex items-start gap-4 p-6 bg-slate-900/50 border border-white/10 rounded-2xl hover:border-cyan-400/30 hover:bg-slate-900/80 transition-all"
+                        >
+                            <div className="w-10 h-10 flex items-center justify-center text-cyan-400 bg-cyan-400/10 rounded-xl group-hover:bg-cyan-400/15 transition-colors">
+                                {method.icon}
+                            </div>
+                            <div>
+                                <h2 className="font-semibold mb-1 text-slate-100">{method.label}</h2>
+                                <p className="text-sm text-slate-400">{method.value}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </Reveal>
 
             {/* CTA Section */}
-            <section className="mt-16 p-8 border border-foreground/10 rounded-lg text-center">
-                <h2 className="text-xl font-semibold mb-2">¿Listo para empezar?</h2>
-                <p className="text-foreground/60 mb-6 max-w-lg mx-auto">
-                    Cuéntame sobre tu proyecto y encontraremos la mejor manera de
-                    colaborar.
-                </p>
-                <a
-                    href="mailto:contacto@ejemplo.com"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-foreground text-background font-medium rounded-lg hover:opacity-90 transition-opacity"
-                >
-                    ENVIAR EMAIL
-                </a>
-            </section>
+            <Reveal delay={0.2}>
+                <section className="mt-16 p-8 bg-slate-900/50 border border-white/10 rounded-2xl text-center">
+                    <h2 className="text-xl font-semibold mb-2 text-slate-100">¿Listo para empezar?</h2>
+                    <p className="text-slate-400 mb-6 max-w-lg mx-auto">
+                        Cuéntame sobre tu proyecto y encontraremos la mejor manera de
+                        colaborar.
+                    </p>
+                    <a
+                        href="mailto:contacto@ejemplo.com"
+                        className="inline-flex items-center justify-center px-6 py-3 bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-medium rounded-xl hover:bg-cyan-400/15 hover:border-cyan-400/30 transition-all"
+                    >
+                        ENVIAR EMAIL
+                    </a>
+                </section>
+            </Reveal>
         </div>
     );
 }

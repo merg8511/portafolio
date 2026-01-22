@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -68,11 +69,15 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-slate-950 text-slate-100 antialiased flex flex-col`}
       >
+        {/* Radial gradient background overlay */}
+        <div className="pointer-events-none fixed inset-0 opacity-60 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.22),transparent_55%)]" />
+
         <Navbar />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1 pt-16 relative">{children}</main>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );

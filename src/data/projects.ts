@@ -4,6 +4,10 @@ export type Project = {
   description: string;
   stack: string[];
   highlights: string[];
+  image: {
+    src: string;
+    alt: string;
+  };
   repo?: string;
   live?: string;
 };
@@ -21,6 +25,10 @@ export const projects: Project[] = [
       "Panel de administración para gestión de productos",
       "Integración con múltiples métodos de pago",
     ],
+    image: {
+      src: "https://placehold.co/1200x675/0f172a/38bdf8/png?text=ECOMMERCE+PLATFORM",
+      alt: "E-Commerce Platform preview",
+    },
     repo: "https://github.com/usuario/ecommerce-platform",
     live: "https://ecommerce-demo.vercel.app",
   },
@@ -36,6 +44,10 @@ export const projects: Project[] = [
       "Filtros avanzados y búsqueda",
       "Exportación de reportes en PDF",
     ],
+    image: {
+      src: "https://placehold.co/1200x675/0f172a/a78bfa/png?text=TASK+MANAGER",
+      alt: "Task Management App preview",
+    },
     repo: "https://github.com/usuario/task-manager",
   },
   {
@@ -50,6 +62,10 @@ export const projects: Project[] = [
       "Exportación a múltiples formatos",
       "Integración con APIs externas",
     ],
+    image: {
+      src: "https://placehold.co/1200x675/0f172a/22c55e/png?text=ANALYTICS+DASHBOARD",
+      alt: "Analytics Dashboard preview",
+    },
     live: "https://analytics-demo.vercel.app",
   },
   {
@@ -64,6 +80,10 @@ export const projects: Project[] = [
       "Puntuación perfecta en Lighthouse",
       "Despliegue automatizado en Vercel",
     ],
+    image: {
+      src: "https://placehold.co/1200x675/0f172a/f97316/png?text=PORTFOLIO+TEMPLATE",
+      alt: "Portfolio Template preview",
+    },
     repo: "https://github.com/usuario/portfolio-template",
     live: "https://portfolio-template.vercel.app",
   },
