@@ -59,7 +59,8 @@ export default function Footer() {
 
                 {/* Copyright */}
                 <p className="text-slate-500 text-sm">
-                    © 2024 Mario Rodríguez. All rights reserved.
+
+                    © {new Date().getFullYear()} Mario Rodríguez. All rights reserved.
                 </p>
 
                 {/* Social Links */}

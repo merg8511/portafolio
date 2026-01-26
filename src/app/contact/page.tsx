@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "CONTACTO",
+    title: "CONTACT",
     description:
-        "Ponte en contacto conmigo para proyectos de desarrollo web, colaboraciones o consultas.",
+        "Get in touch for web development projects, collaborations, or inquiries.",
 };
 
 const contactMethods = [
     {
         label: "Email",
-        value: "contacto@ejemplo.com",
-        href: "mailto:contacto@ejemplo.com",
+        value: "contact@example.com",
+        href: "mailto:contact@example.com",
         icon: (
             <svg
                 className="w-5 h-5"
@@ -56,11 +56,11 @@ export default function ContactPage() {
             <Reveal>
                 <header className="mb-12">
                     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-100">
-                        CONTACTO
+                        CONTACT
                     </h1>
                     <p className="text-slate-400 max-w-2xl">
-                        ¿Tienes un proyecto en mente o simplemente quieres saludar? No dudes
-                        en escribirme. Respondo normalmente en 24-48 horas.
+                        Have a project in mind or just want to say hello? Feel free to
+                        reach out. I typically respond within 24-48 hours.
                     </p>
                 </header>
             </Reveal>
@@ -90,16 +90,16 @@ export default function ContactPage() {
             {/* CTA Section */}
             <Reveal delay={0.2}>
                 <section className="mt-16 p-8 bg-slate-900/50 border border-white/10 rounded-2xl text-center">
-                    <h2 className="text-xl font-semibold mb-2 text-slate-100">¿Listo para empezar?</h2>
+                    <h2 className="text-xl font-semibold mb-2 text-slate-100">Ready to start?</h2>
                     <p className="text-slate-400 mb-6 max-w-lg mx-auto">
-                        Cuéntame sobre tu proyecto y encontraremos la mejor manera de
-                        colaborar.
+                        Tell me about your project and let&apos;s find the best way to
+                        collaborate.
                     </p>
                     <a
-                        href="mailto:contacto@ejemplo.com"
+                        href="mailto:contact@example.com"
                         className="inline-flex items-center justify-center px-6 py-3 bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-medium rounded-xl hover:bg-cyan-400/15 hover:border-cyan-400/30 transition-all"
                     >
-                        ENVIAR EMAIL
+                        SEND EMAIL
                     </a>
                 </section>
             </Reveal>

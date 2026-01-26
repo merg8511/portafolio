@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { projects } from "@/data/projects";
 import Reveal from "@/components/Reveal";
+import ApiPreviewCard from "@/components/ApiPreviewCard";
 
 export default function ProjectsPage() {
     return (
@@ -12,11 +13,11 @@ export default function ProjectsPage() {
             <Reveal>
                 <header className="mb-12">
                     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-100">
-                        PROYECTOS
+                        PROJECTS
                     </h1>
                     <p className="text-slate-400 max-w-2xl">
-                        Una selección de proyectos en los que he trabajado. Cada uno
-                        representa diferentes desafíos técnicos y soluciones implementadas.
+                        A selection of projects I&apos;ve worked on. Each one represents
+                        different technical challenges and implemented solutions.
                     </p>
                 </header>
             </Reveal>
@@ -30,22 +31,41 @@ export default function ProjectsPage() {
                                 transition={{ type: "spring", stiffness: 420, damping: 28 }}
                                 className="overflow-hidden bg-slate-900/50 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-colors"
                             >
-                                {/* Project Image */}
-                                <div className="relative aspect-video overflow-hidden">
-                                    <Image
-                                        src={project.images.desktop[0]?.src}
-                                        alt={project.images.desktop[0]?.alt}
-                                        fill
-                                        sizes="(max-width: 640px) 100vw, 50vw"
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </div>
+                                {/* Conditional: API Preview or Image */}
+                                {project.displayType === "api" && project.apiPreview ? (
+                                    <div className="p-4">
+                                        <ApiPreviewCard
+                                            endpoints={project.apiPreview.endpoints}
+                                            baseUrl={project.apiPreview.baseUrl}
+                                            maxEndpoints={4}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="relative aspect-video overflow-hidden">
+                                        {project.images?.desktop[0] && (
+                                            <Image
+                                                src={project.images.desktop[0].src}
+                                                alt={project.images.desktop[0].alt}
+                                                fill
+                                                sizes="(max-width: 640px) 100vw, 50vw"
+                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        )}
+                                    </div>
+                                )}
 
                                 {/* Project Info */}
                                 <div className="p-6">
-                                    <h2 className="text-xl font-semibold mb-2 text-slate-100 group-hover:text-cyan-400 transition-colors">
-                                        {project.title}
-                                    </h2>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        {project.displayType === "api" && (
+                                            <span className="px-2 py-0.5 text-xs font-bold uppercase tracking-tight bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded">
+                                                API
+                                            </span>
+                                        )}
+                                        <h2 className="text-xl font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors">
+                                            {project.title}
+                                        </h2>
+                                    </div>
                                     <p className="text-slate-400 text-sm mb-4 line-clamp-2">
                                         {project.description}
                                     </p>

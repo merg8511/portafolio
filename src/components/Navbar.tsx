@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-    { href: "#projects", label: "Proyectos" },
+    { href: "#projects", label: "Projects" },
     { href: "#stack", label: "Stack" },
-    { href: "#contact", label: "Contacto" },
+    { href: "#contact", label: "Contact" },
 ];
 
 // Logo SVG component
@@ -59,7 +59,7 @@ export default function Navbar() {
                         ))}
                     </nav>
                     <button className="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-emerald-500 text-white text-sm font-bold tracking-wide hover:bg-emerald-600 transition-colors">
-                        <span className="truncate">Download CV</span>
+                        <span className="truncate">Download Resume (PDF)</span>
                     </button>
                 </div>
 
@@ -94,7 +94,7 @@ export default function Navbar() {
                             </a>
                         ))}
                         <button className="mt-2 mx-4 flex items-center justify-center rounded-lg h-10 px-4 bg-emerald-500 text-white text-sm font-bold tracking-wide hover:bg-emerald-600 transition-colors">
-                            Download CV
+                            Download Resume (PDF)
                         </button>
                     </nav>
                 </div>
