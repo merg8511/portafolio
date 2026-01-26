@@ -157,25 +157,25 @@ const specialties = [
   {
     icon: <DevicesIcon />,
     title: "Frontend",
-    description: "Interfaces modernas y responsivas con Next.js, Tailwind CSS y Blazor Server, enfocadas en rendimiento, accesibilidad y una experiencia de usuario limpia.",
+    description: "Modern, responsive interfaces built with Next.js, Tailwind CSS, and Blazor Server. Focused on performance, accessibility, and clean user experience.",
   },
   {
     icon: <DatabaseIcon />,
     title: "Backend",
-    description: "APIs robustas con .NET (ASP.NET Core / Minimal APIs) y EF Core, diseñadas para escalar, con buenas prácticas de arquitectura, seguridad y mantenibilidad.",
+    description: "Robust APIs with .NET (ASP.NET Core / Minimal APIs) and EF Core. Designed to scale with solid architecture, security, and maintainability.",
   },
   {
     icon: <CloudIcon />,
     title: "DevOps & Cloud",
-    description: "Despliegue y automatización con Docker, Azure y CI/CD pipelines, garantizando estabilidad, continuidad y entregas rápidas en producción.",
+    description: "Deployment and automation with Docker, Azure, and CI/CD pipelines. Ensuring stability, continuity, and fast delivery to production.",
   },
 ];
 
 const processSteps = [
-  { number: "01", title: "Descubrimiento", description: "Levantamiento de requerimientos, alcance y objetivos del proyecto." },
-  { number: "02", title: "Diseño", description: "Prototipado UI/UX y arquitectura técnica." },
-  { number: "03", title: "Desarrollo", description: "Implementación frontend + backend, pruebas y control de calidad." },
-  { number: "04", title: "Entrega", description: "Despliegue, optimización, monitoreo y soporte evolutivo." },
+  { number: "01", title: "Discovery", description: "Requirements gathering, scope definition, and project objectives." },
+  { number: "02", title: "Design", description: "UI/UX prototyping and technical architecture." },
+  { number: "03", title: "Development", description: "Frontend + backend implementation, testing, and quality assurance." },
+  { number: "04", title: "Delivery", description: "Deployment, optimization, monitoring, and ongoing support." },
 ];
 
 const techStack = [
@@ -212,17 +212,17 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-emerald-500 text-xs font-bold uppercase tracking-widest">Disponible para proyectos</span>
+            <span className="text-emerald-500 text-xs font-bold uppercase tracking-widest">Available for projects</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-slate-900 dark:text-white text-5xl md:text-6xl font-black leading-[1.1] tracking-tighter uppercase">
-            DESARROLLADOR WEB <span className="text-emerald-500">.NET + NEXT.JS</span>
+            WEB DEVELOPER <span className="text-emerald-500">.NET + NEXT.JS</span>
           </h1>
 
           {/* Description */}
           <p className="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-normal max-w-[500px]">
-            Construyo aplicaciones web rápidas y escalables, con UI limpia y APIs robustas.
+            I build fast and scalable web applications with clean UI and robust APIs.
           </p>
 
           {/* CTA Buttons */}
@@ -231,13 +231,13 @@ export default function Home() {
               href="#projects"
               className="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-emerald-500 text-white text-base font-bold tracking-wide hover:scale-105 transition-transform shadow-lg shadow-emerald-500/20"
             >
-              Ver Proyectos
+              View Projects
             </a>
             <a
               href="#contact"
               className="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-[#232f48] text-white text-base font-bold tracking-wide hover:bg-[#2d3b5a] transition-colors"
             >
-              Hablemos
+              Let's Talk
             </a>
           </div>
 
@@ -274,7 +274,7 @@ export default function Home() {
       {/* ESPECIALIDADES SECTION */}
       {/* ============================================ */}
       <section className="py-16 border-t border-[#232f48]" id="services">
-        <h2 className="text-3xl font-bold mb-10 text-center uppercase tracking-tight">Especialidades</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center uppercase tracking-tight">Specialties</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {specialties.map((specialty) => (
             <div
@@ -298,13 +298,13 @@ export default function Home() {
         <div className="flex items-end justify-between mb-8 px-4">
           <div>
             <p className="text-emerald-500 font-bold text-sm tracking-widest uppercase mb-2">Portafolio</p>
-            <h2 className="text-3xl font-bold tracking-tight">Proyectos destacados</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Featured Projects</h2>
           </div>
           <a
             href="/projects"
             className="text-emerald-500 text-sm font-bold flex items-center gap-1 hover:opacity-80 transition-opacity"
           >
-            Ver todos <ArrowIcon />
+            View all <ArrowIcon />
           </a>
         </div>
 
@@ -324,7 +324,7 @@ export default function Home() {
                     href={`/projects/${project.slug}`}
                     className="bg-white text-emerald-500 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50"
                   >
-                    Ver Detalles
+                    View Details
                   </a>
                 </div>
               </div>
@@ -353,7 +353,7 @@ export default function Home() {
       {/* PROCESO DE TRABAJO SECTION */}
       {/* ============================================ */}
       <section className="py-16 border-t border-[#232f48]">
-        <h2 className="text-3xl font-bold mb-12 text-center uppercase tracking-tight">Mi Proceso de Trabajo</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center uppercase tracking-tight">My Process</h2>
         <div className="relative flex flex-col md:flex-row gap-8 justify-between">
           {/* Connecting line (desktop only) */}
           <div className="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-[#232f48] -z-10"></div>
@@ -410,17 +410,17 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
 
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter relative z-10">
-            ¿Construimos algo juntos?
+            Let's Build Something Together
           </h2>
           <p className="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto relative z-10">
-            Estoy disponible para nuevos proyectos y colaboraciones. Si tienes una idea, hagámosla realidad.
+            I'm available for new projects and collaborations. If you have an idea, let's make it happen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-20">
             <button className="bg-white text-emerald-500 px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg min-w-[200px]">
-              <MailIcon /> Enviar Mensaje
+              <MailIcon /> Send Message
             </button>
             <button className="bg-[#0a192f] text-white border-2 border-transparent px-8 py-4 rounded-lg font-bold text-lg hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-xl min-w-[200px]">
-              <ScheduleIcon /> Agendar Llamada
+              <ScheduleIcon /> Schedule a Call
             </button>
           </div>
         </div>
