@@ -12,11 +12,11 @@ export default function ProjectsPage() {
             <Reveal>
                 <header className="mb-12">
                     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-100">
-                        PROYECTOS
+                        PROJECTS
                     </h1>
                     <p className="text-slate-400 max-w-2xl">
-                        Una selección de proyectos en los que he trabajado. Cada uno
-                        representa diferentes desafíos técnicos y soluciones implementadas.
+                        A selection of projects I&apos;ve worked on. Each one represents
+                        different technical challenges and implemented solutions.
                     </p>
                 </header>
             </Reveal>
