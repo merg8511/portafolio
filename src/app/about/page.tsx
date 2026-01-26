@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "SOBRE MÍ",
+    title: "ABOUT",
     description:
-        "Conoce más sobre mi experiencia, habilidades técnicas y enfoque profesional en el desarrollo web.",
+        "Learn more about my experience, technical skills, and professional approach to web development.",
 };
 
 const technologies = [
     { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
     { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "MongoDB"] },
-    { category: "Herramientas", items: ["Git", "Docker", "Vercel", "Figma"] },
+    { category: "Tools", items: ["Git", "Docker", "Vercel", "Figma"] },
 ];
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
             <Reveal>
                 <header className="mb-12">
                     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-100">
-                        SOBRE MÍ
+                        ABOUT
                     </h1>
                 </header>
             </Reveal>
@@ -29,14 +29,14 @@ export default function AboutPage() {
                 <section className="mb-16">
                     <div className="max-w-3xl">
                         <p className="text-lg text-slate-400 leading-relaxed mb-6">
-                            Soy desarrollador web con experiencia en la creación de aplicaciones
-                            modernas y escalables. Mi enfoque combina código limpio, buenas
-                            prácticas de desarrollo y atención al detalle en cada proyecto.
+                            I&apos;m a web developer with experience building modern and scalable
+                            applications. My approach combines clean code, development best
+                            practices, and attention to detail in every project.
                         </p>
                         <p className="text-lg text-slate-400 leading-relaxed">
-                            Trabajo principalmente con el ecosistema JavaScript/TypeScript,
-                            aunque disfruto explorando nuevas tecnologías que permitan resolver
-                            problemas de manera más eficiente.
+                            I primarily work with the JavaScript/TypeScript ecosystem,
+                            though I enjoy exploring new technologies that help solve
+                            problems more efficiently.
                         </p>
                     </div>
                 </section>
@@ -46,7 +46,7 @@ export default function AboutPage() {
             <Reveal delay={0.2}>
                 <section className="mb-16">
                     <h2 className="text-sm font-medium tracking-widest text-slate-500 mb-8">
-                        STACK TECNOLÓGICO
+                        TECH STACK
                     </h2>
                     <div className="grid sm:grid-cols-3 gap-6">
                         {technologies.map((tech) => (
@@ -70,23 +70,21 @@ export default function AboutPage() {
             <Reveal delay={0.3}>
                 <section>
                     <h2 className="text-sm font-medium tracking-widest text-slate-500 mb-8">
-                        MI ENFOQUE
+                        MY APPROACH
                     </h2>
                     <div className="grid sm:grid-cols-2 gap-6">
                         <div className="p-6 bg-slate-900/50 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-colors">
-                            <h3 className="font-semibold mb-2 text-slate-100">Código mantenible</h3>
+                            <h3 className="font-semibold mb-2 text-slate-100">Maintainable Code</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Priorizo escribir código legible y bien estructurado. Un proyecto
-                                exitoso es aquel que otros desarrolladores pueden entender y
-                                extender fácilmente.
+                                I prioritize writing readable and well-structured code. A successful
+                                project is one that other developers can understand and extend easily.
                             </p>
                         </div>
                         <div className="p-6 bg-slate-900/50 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-colors">
-                            <h3 className="font-semibold mb-2 text-slate-100">Rendimiento primero</h3>
+                            <h3 className="font-semibold mb-2 text-slate-100">Performance First</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Cada decisión técnica considera el impacto en la experiencia del
-                                usuario. Optimizo para tiempos de carga rápidos y navegación
-                                fluida.
+                                Every technical decision considers the impact on user experience.
+                                I optimize for fast load times and smooth navigation.
                             </p>
                         </div>
                     </div>
