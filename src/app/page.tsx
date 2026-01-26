@@ -11,6 +11,7 @@ import {
 } from "react-icons/si";
 
 import { projects } from "@/data/projects";
+import ApiPreviewCard from "@/components/ApiPreviewCard";
 
 // ============================================
 // ICON COMPONENTS
@@ -311,27 +312,47 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
           {projects.map((project) => (
             <div key={project.slug} className="flex flex-col group">
-              <div className="relative overflow-hidden rounded-xl aspect-video mb-4 shadow-lg border border-transparent group-hover:border-emerald-500/30 transition-colors">
-                <Image
-                  src={project.images.desktop[0]?.src}
-                  alt={project.images.desktop[0]?.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <a
-                    href={`/projects/${project.slug}`}
-                    className="bg-white text-emerald-500 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50"
-                  >
-                    View Details
-                  </a>
+              {/* Conditional: API Preview or Image */}
+              {project.displayType === "api" && project.apiPreview ? (
+                <a href={`/projects/${project.slug}`} className="mb-4">
+                  <ApiPreviewCard
+                    endpoints={project.apiPreview.endpoints}
+                    baseUrl={project.apiPreview.baseUrl}
+                    maxEndpoints={3}
+                  />
+                </a>
+              ) : (
+                <div className="relative overflow-hidden rounded-xl aspect-video mb-4 shadow-lg border border-transparent group-hover:border-emerald-500/30 transition-colors">
+                  {project.images?.desktop[0] && (
+                    <Image
+                      src={project.images.desktop[0].src}
+                      alt={project.images.desktop[0].alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <a
+                      href={`/projects/${project.slug}`}
+                      className="bg-white text-emerald-500 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50"
+                    >
+                      View Details
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="px-2">
-                <h3 className="text-white text-lg font-bold mb-1 group-hover:text-emerald-500 transition-colors">
-                  {project.title}
-                </h3>
+                <div className="flex items-center gap-2 mb-1">
+                  {project.displayType === "api" && (
+                    <span className="text-[10px] font-bold uppercase tracking-tight px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                      API
+                    </span>
+                  )}
+                  <h3 className="text-white text-lg font-bold group-hover:text-emerald-500 transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
                 <p className="text-[#92a4c9] text-sm font-normal mb-3">{project.description}</p>
                 <div className="flex gap-2 flex-wrap">
                   {project.stack.slice(0, 2).map((tech) => (

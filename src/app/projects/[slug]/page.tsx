@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import ImageCarousel from "@/components/ImageCarousel";
 import PhoneFrame from "@/components/PhoneFrame";
+import EndpointsTable from "@/components/EndpointsTable";
+import CodeBlock from "@/components/CodeBlock";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -59,6 +61,11 @@ export default async function ProjectDetailPage({ params }: Props) {
     const hasArchitecture = project.architecture && project.architecture.length > 0;
     const hasChallenges = project.challenges && project.challenges.length > 0;
     const hasLessons = project.lessonsLearned && project.lessonsLearned.length > 0;
+    const isApiProject = project.displayType === "api";
+    const hasCapabilities = project.capabilities && project.capabilities.length > 0;
+    const hasEndpoints = project.apiPreview && project.apiPreview.endpoints.length > 0;
+    const hasSampleRequest = project.sampleRequest;
+    const hasImages = project.images && project.images.desktop.length > 0;
 
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -179,22 +186,72 @@ export default async function ProjectDetailPage({ params }: Props) {
                 </Reveal>
             )}
 
-            {/* Project Gallery - 70/30 Layout */}
-            <Reveal delay={0.25}>
-                <div className="grid gap-6 mb-12 items-start lg:grid-cols-[1fr_280px]">
-                    {/* Desktop Carousel */}
-                    <div className="min-w-0">
-                        <ImageCarousel images={project.images.desktop} />
-                    </div>
-
-                    {/* Mobile Preview */}
-                    {project.images.mobile && (
-                        <div className="flex justify-center lg:justify-end">
-                            <PhoneFrame image={project.images.mobile} />
+            {/* Project Gallery - 70/30 Layout (only for webapp) */}
+            {hasImages && !isApiProject && (
+                <Reveal delay={0.25}>
+                    <div className="grid gap-6 mb-12 items-start lg:grid-cols-[1fr_280px]">
+                        {/* Desktop Carousel */}
+                        <div className="min-w-0">
+                            <ImageCarousel images={project.images!.desktop} />
                         </div>
-                    )}
-                </div>
-            </Reveal>
+
+                        {/* Mobile Preview */}
+                        {project.images!.mobile && (
+                            <div className="flex justify-center lg:justify-end">
+                                <PhoneFrame image={project.images!.mobile} />
+                            </div>
+                        )}
+                    </div>
+                </Reveal>
+            )}
+
+            {/* API CAPABILITIES (for API projects) */}
+            {isApiProject && hasCapabilities && (
+                <Reveal delay={0.25}>
+                    <section className="mb-12">
+                        <h2 className="text-sm font-medium tracking-widest text-slate-500 mb-4">
+                            CAPABILITIES
+                        </h2>
+                        <div className="flex flex-wrap gap-2">
+                            {project.capabilities!.map((capability, index) => (
+                                <span
+                                    key={index}
+                                    className="px-3 py-1.5 text-sm font-medium text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-xl"
+                                >
+                                    {capability}
+                                </span>
+                            ))}
+                        </div>
+                    </section>
+                </Reveal>
+            )}
+
+            {/* API ENDPOINTS (for API projects) */}
+            {isApiProject && hasEndpoints && (
+                <Reveal delay={0.3}>
+                    <section className="mb-12">
+                        <h2 className="text-sm font-medium tracking-widest text-slate-500 mb-4">
+                            ENDPOINTS
+                        </h2>
+                        <EndpointsTable
+                            endpoints={project.apiPreview!.endpoints}
+                            baseUrl={project.apiPreview!.baseUrl}
+                        />
+                    </section>
+                </Reveal>
+            )}
+
+            {/* SAMPLE REQUEST (for API projects) */}
+            {isApiProject && hasSampleRequest && (
+                <Reveal delay={0.35}>
+                    <section className="mb-12">
+                        <h2 className="text-sm font-medium tracking-widest text-slate-500 mb-4">
+                            SAMPLE REQUEST
+                        </h2>
+                        <CodeBlock sample={project.sampleRequest!} />
+                    </section>
+                </Reveal>
+            )}
 
             {/* Featured Functionalities */}
             <Reveal delay={0.3}>
