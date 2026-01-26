@@ -7,11 +7,13 @@ import {
   SiPostgresql,
   SiDocker,
   SiGithub,
-  SiBlazor
+  SiBlazor,
+  SiWhatsapp
 } from "react-icons/si";
 
 import { projects } from "@/data/projects";
 import ApiPreviewCard from "@/components/ApiPreviewCard";
+import Link from "next/link";
 
 // ============================================
 // ICON COMPONENTS
@@ -153,6 +155,11 @@ function EFCoreIcon() {
 // ============================================
 // DATA
 // ============================================
+
+const phone = "50372330330"; // sin +, sin espacios
+const text = encodeURIComponent("Hi Mario! I saw your portfolio and I'd like to discuss a project.");
+const whatsappUrl = `https://wa.me/${phone}?text=${text}`;
+
 
 const specialties = [
   {
@@ -309,64 +316,90 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-          {projects.map((project) => (
-            <div key={project.slug} className="flex flex-col group">
-              {/* Conditional: API Preview or Image */}
-              {project.displayType === "api" && project.apiPreview ? (
-                <a href={`/projects/${project.slug}`} className="mb-4">
-                  <ApiPreviewCard
-                    endpoints={project.apiPreview.endpoints}
-                    baseUrl={project.apiPreview.baseUrl}
-                    maxEndpoints={3}
-                  />
-                </a>
-              ) : (
-                <div className="relative overflow-hidden rounded-xl aspect-video mb-4 shadow-lg border border-transparent group-hover:border-emerald-500/30 transition-colors">
-                  {project.images?.desktop[0] && (
-                    <Image
-                      src={project.images.desktop[0].src}
-                      alt={project.images.desktop[0].alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <a
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 items-stretch">
+          {projects.map((project) => {
+            const cover = project.images?.desktop?.[0];
+
+            return (
+              <div key={project.slug} className="flex flex-col h-full group">
+                {/* Preview area (fixed height for ALL cards) */}
+                <div className="mb-4 h-[220px]">
+                  {project.displayType === "api" && project.apiPreview ? (
+                    <Link href={`/projects/${project.slug}`} className="block h-full">
+                      <ApiPreviewCard
+                        className="h-full"
+                        endpoints={project.apiPreview.endpoints}
+                        baseUrl={project.apiPreview.baseUrl}
+                        maxEndpoints={4}
+                      />
+                    </Link>
+                  ) : (
+                    <Link
                       href={`/projects/${project.slug}`}
-                      className="bg-white text-emerald-500 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50"
+                      className="relative block h-full overflow-hidden rounded-xl shadow-lg border border-transparent group-hover:border-emerald-500/30 transition-colors"
+                      aria-label={`View details for ${project.title}`}
                     >
-                      View Details
-                    </a>
+                      {cover && (
+                        <Image
+                          src={cover.src}
+                          alt={cover.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      )}
+
+                      {/* Hover overlay (no nested <a>) */}
+                      <div className="absolute inset-0 bg-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="bg-white text-emerald-600 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50">
+                          View Details
+                        </span>
+                      </div>
+                    </Link>
+                  )}
+                </div>
+
+                {/* Content (flex-1 + tags pinned to bottom) */}
+                <div className="px-2 flex flex-col flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    {project.displayType === "api" && (
+                      <span className="text-[10px] font-bold uppercase tracking-tight px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                        API
+                      </span>
+                    )}
+
+                    <h3 className="text-white text-lg font-bold group-hover:text-emerald-500 transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
+
+                  {/* Clamp 3 lines WITHOUT needing line-clamp plugin */}
+                  <p
+                    className={[
+                      "text-[#92a4c9] text-sm font-normal mb-3 leading-relaxed",
+                      "overflow-hidden",
+                      "[display:-webkit-box]",
+                      "[-webkit-box-orient:vertical]",
+                      "[-webkit-line-clamp:3]",
+                    ].join(" ")}
+                  >
+                    {project.description}
+                  </p>
+
+                  <div className="mt-auto flex gap-2 flex-wrap pt-2">
+                    {project.stack.slice(0, 2).map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[10px] font-bold uppercase tracking-tighter px-2 py-0.5 rounded border border-emerald-500/30 text-emerald-500 bg-emerald-500/5"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              )}
-              <div className="px-2">
-                <div className="flex items-center gap-2 mb-1">
-                  {project.displayType === "api" && (
-                    <span className="text-[10px] font-bold uppercase tracking-tight px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                      API
-                    </span>
-                  )}
-                  <h3 className="text-white text-lg font-bold group-hover:text-emerald-500 transition-colors">
-                    {project.title}
-                  </h3>
-                </div>
-                <p className="text-[#92a4c9] text-sm font-normal mb-3">{project.description}</p>
-                <div className="flex gap-2 flex-wrap">
-                  {project.stack.slice(0, 2).map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[10px] font-bold uppercase tracking-tighter px-2 py-0.5 rounded border border-emerald-500/30 text-emerald-500 bg-emerald-500/5"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -437,9 +470,14 @@ export default function Home() {
             I'm available for new projects and collaborations. If you have an idea, let's make it happen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-20">
-            <button className="bg-white text-emerald-500 px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg min-w-[200px]">
-              <MailIcon /> Send Message
-            </button>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-emerald-500 px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg min-w-[200px]"
+            >
+              <SiWhatsapp /> Send Message
+            </a>
             <button className="bg-[#0a192f] text-white border-2 border-transparent px-8 py-4 rounded-lg font-bold text-lg hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-xl min-w-[200px]">
               <ScheduleIcon /> Schedule a Call
             </button>
