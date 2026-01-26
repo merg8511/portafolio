@@ -46,28 +46,28 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "payroll-platform",
-    title: "Sistema de Gestión de Planillas de Pago",
+    title: "Payroll Management System",
     description:
-      "Sistema web empresarial en .NET 8 MVC que automatiza el cálculo de planillas con deducciones legales de El Salvador (ISSS, AFP, ISR), registra eventos diarios y genera boletas y planillas en PDF.",
+      "Enterprise .NET 8 MVC web system that automates payroll calculations with El Salvador legal deductions (ISSS, AFP, ISR), logs daily events, and generates PDF payslips and payroll reports.",
     stack: [".NET 8", "MVC", "Entity Framework", "MySQL"],
     highlights: [
-      "Automatización de deducciones legales (ISSS, AFP, ISR)",
-      "Bitácora diaria de eventos (bonos, descuentos, préstamos, horas extra)",
-      "Generación de PDF profesional (planilla + boletas)",
-      "Gestión de empleados y estructura organizacional",
-      "Sistema de roles y permisos granulares",
-      "Auditoría de acciones (trazabilidad administrativa)",
+      "Automated legal deductions (ISSS, AFP, ISR)",
+      "Daily event logging (bonuses, deductions, loans, overtime)",
+      "Professional PDF generation (payroll + payslips)",
+      "Employee and organizational structure management",
+      "Role-based access control with granular permissions",
+      "Audit logging for administrative traceability",
     ],
     images: {
       desktop: [
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/hero-dashboard-PA3sjPtjVvXDBPgRU5sWxZGLyBsV4X.png", alt: "Dashboard principal del sistema de planillas" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/login-A3QKU7Qma6Icx1FjjQH60oUhr8TgFq.png", alt: "Pantalla de inicio de sesión" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/management-table-RrwfoJgrOPGSI7LT5vJpQPs9dIThMp.png", alt: "Tabla de gestión de empleados" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/create-edit-xKU1jX93TMG73WTX1Dn3PrPyytaPFg.png", alt: "Formulario de creación y edición" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/detail-view-LVNxHwStKALuQGlvL2d9GQYsQxbYBv.png", alt: "Vista de detalle de empleado" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/reports-analytics-KkBjVMzrVKp3VymtCy8pTA3HP0Bo4U.png", alt: "Reportes y analíticas" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/hero-dashboard-PA3sjPtjVvXDBPgRU5sWxZGLyBsV4X.png", alt: "Main payroll system dashboard" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/login-A3QKU7Qma6Icx1FjjQH60oUhr8TgFq.png", alt: "Login screen" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/management-table-RrwfoJgrOPGSI7LT5vJpQPs9dIThMp.png", alt: "Employee management table" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/create-edit-xKU1jX93TMG73WTX1Dn3PrPyytaPFg.png", alt: "Create and edit form" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/detail-view-LVNxHwStKALuQGlvL2d9GQYsQxbYBv.png", alt: "Employee detail view" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/reports-analytics-KkBjVMzrVKp3VymtCy8pTA3HP0Bo4U.png", alt: "Reports and analytics" },
       ],
-      mobile: { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/mobile-L6qrk7xSlAuV3eRDO3ecVsmK626L0q.png", alt: "Vista móvil del sistema" }
+      mobile: { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/mobile-L6qrk7xSlAuV3eRDO3ecVsmK626L0q.png", alt: "Mobile view" }
     },
     repo: "https://github.com/merg8511/SistemaPlanilla",
 
@@ -75,11 +75,11 @@ export const projects: Project[] = [
     status: "completed",
     role: "Full-Stack Developer",
     projectType: "Enterprise Web App",
-    keyOutput: "PDF Planillas + Boletas",
+    keyOutput: "PDF Payroll + Payslips",
 
-    problem: "Las empresas necesitan un proceso confiable para gestionar planillas cumpliendo regulaciones fiscales locales, evitando errores manuales y generando documentación formal.",
-    solution: "Se desarrolló un sistema que registra eventos diarios (bonos, descuentos, horas extra), calcula automáticamente deducciones legales y genera planillas y boletas de pago en PDF.",
-    result: "Automatización del flujo completo de planillas, con control de acceso, trazabilidad y reportes profesionales listos para auditoría y uso empresarial.",
+    problem: "Businesses need a reliable process to manage payroll while complying with local tax regulations, avoiding manual errors, and generating formal documentation.",
+    solution: "Built a system that logs daily events (bonuses, deductions, overtime), automatically calculates legal deductions, and generates payroll and payslip PDFs.",
+    result: "Full automation of payroll workflow with access control, traceability, and professional reports ready for audit and business use.",
 
     stackDetails: [
       { category: "Backend", technologies: [".NET 8 (ASP.NET Core MVC)", "Entity Framework Core", "MySQL 8.0"] },
@@ -90,47 +90,47 @@ export const projects: Project[] = [
 
     architecture: [
       "Repository Pattern + Unit of Work",
-      "Modularización por Areas (Admin, Payroll, Business, Identity)",
-      "Two DbContexts (datos + autenticación)",
-      "Custom Authorization (políticas y handlers)",
+      "Modular design with Areas (Admin, Payroll, Business, Identity)",
+      "Dual DbContexts (data + authentication)",
+      "Custom Authorization (policies and handlers)",
     ],
 
     challenges: [
-      { title: "ISR por tramos", solution: "Motor de cálculo por brackets configurables desde base de datos" },
-      { title: "Permisos granulares", solution: "PolicyProvider + AuthorizationHandler personalizado" },
-      { title: "PDF profesional", solution: "Generación en landscape con Rotativa y templates consistentes" },
+      { title: "Income tax brackets", solution: "Calculation engine with configurable brackets from database" },
+      { title: "Granular permissions", solution: "Custom PolicyProvider + AuthorizationHandler" },
+      { title: "Professional PDFs", solution: "Landscape generation with Rotativa and consistent templates" },
     ],
 
     lessonsLearned: [
-      "Manejo de múltiples DbContexts y migraciones",
-      "Implementación de seguridad granular por permisos",
-      "Automatización de flujos contables y reportes PDF",
+      "Managing multiple DbContexts and migrations",
+      "Implementing granular permission-based security",
+      "Automating accounting workflows and PDF reports",
     ],
   },
   {
     slug: "booking-platform",
     title: "Refugio del Sol — Booking Platform",
     description:
-      "Plataforma de reservas para renta de rancho completo con flujo guiado en 3 pasos (fechas y huéspedes, servicios extra y confirmación), UI responsive enfocada en conversión y panel administrativo para gestión operativa.",
+      "Rental booking platform with a guided 3-step flow (dates and guests, extra services, confirmation), conversion-focused responsive UI, and admin panel for operational management.",
     stack: [".NET 9", "Blazor Server", "MudBlazor", "Entity Framework"],
     highlights: [
-      "Flujo de reserva en 3 pasos con validación y resumen final",
-      "Gestión de disponibilidad por fechas y reglas de reserva",
-      "Servicios adicionales opcionales integrados al proceso de booking",
-      "Estado centralizado para mantener consistencia entre pantallas (BookingStateService)",
-      "Experiencia responsive Mobile First con UI premium (MudBlazor)",
-      "Panel administrativo para mantenimiento de contenido y operación",
+      "3-step booking flow with validation and final summary",
+      "Date-based availability management with booking rules",
+      "Optional add-on services integrated into booking process",
+      "Centralized state for consistency across screens (BookingStateService)",
+      "Mobile-first responsive experience with premium UI (MudBlazor)",
+      "Admin panel for content and operations management",
     ],
     images: {
       desktop: [
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/hero.png", alt: "Dashboard principal del sistema de planillas" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/services.png", alt: "Services" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/reviews.png", alt: "Reviews" },
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/gallery.png", alt: "Gallery" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/hero.png", alt: "Booking platform landing page" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/services.png", alt: "Services section" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/reviews.png", alt: "Reviews section" },
+        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/gallery.png", alt: "Photo gallery" },
         { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/booking-step1.png", alt: "Step 1: Select dates" },
         { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/booking-step3.png", alt: "Step 3: Summary & Confirm" },
       ],
-      mobile: { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/mobile-booking.png", alt: "Vista móvil del sistema" }
+      mobile: { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/mobile-booking.png", alt: "Mobile view" }
     },
     repo: "https://placehold.co/1x1/png?text=ADD+REPO+URL",
     live: "https://placehold.co/1x1/png?text=ADD+LIVE+URL",
@@ -142,11 +142,11 @@ export const projects: Project[] = [
     keyOutput: "3-Step Booking Flow + Admin Panel",
 
     problem:
-      "Los negocios que rentan espacios completos necesitan un flujo de reserva claro y confiable que reduzca fricción, valide disponibilidad y permita agregar servicios extra sin complicar la experiencia del usuario.",
+      "Businesses renting full spaces need a clear and reliable booking flow that reduces friction, validates availability, and allows adding extra services without complicating the user experience.",
     solution:
-      "Se diseñó una plataforma de reservas con un flujo en 3 pasos, estado centralizado para mantener consistencia, UI responsive Mobile First y una base administrativa para gestionar disponibilidad, servicios y reservaciones.",
+      "Designed a booking platform with a 3-step flow, centralized state for consistency, mobile-first responsive UI, and an admin foundation for managing availability, services, and reservations.",
     result:
-      "Proceso de reserva más rápido y entendible para el usuario, con una arquitectura lista para evolucionar a funcionalidades como pagos, automatización de confirmaciones y reglas avanzadas de disponibilidad.",
+      "Faster and clearer booking process for users, with an architecture ready to evolve into payment integration, confirmation automation, and advanced availability rules.",
 
     stackDetails: [
       {
@@ -168,37 +168,36 @@ export const projects: Project[] = [
     ],
 
     architecture: [
-      "Flujo de reserva guiado con Stepper (3 pasos)",
-      "Estado centralizado con BookingStateService para persistencia del flow",
-      "Componentes reutilizables y layout consistente (AppBar + secciones)",
-      "Diseño Mobile First con UI limpia y coherente (MudBlazor)",
+      "Guided booking flow with Stepper (3 steps)",
+      "Centralized state with BookingStateService for flow persistence",
+      "Reusable components and consistent layout (AppBar + sections)",
+      "Mobile-first design with clean and coherent UI (MudBlazor)",
     ],
 
     challenges: [
       {
-        title: "Consistencia del estado entre pasos",
+        title: "State consistency between steps",
         solution:
-          "Uso de un servicio de estado centralizado (BookingStateService) para mantener datos del booking y evitar pérdida de información al navegar",
+          "Centralized state service (BookingStateService) to maintain booking data and prevent information loss during navigation",
       },
       {
-        title: "UX de reserva sin fricción",
+        title: "Frictionless booking UX",
         solution:
-          "Flujo guiado en 3 pasos con validaciones por paso, resumen final claro y CTAs directos",
+          "Guided 3-step flow with per-step validation, clear final summary, and direct CTAs",
       },
       {
-        title: "Escalabilidad del sistema",
+        title: "System scalability",
         solution:
-          "Estructura pensada para extender con pagos, automatización y módulos admin sin reescribir el flujo principal",
+          "Structure designed to extend with payments, automation, and admin modules without rewriting the main flow",
       },
     ],
 
     lessonsLearned: [
-      "Diseño de flujos guiados enfocados en conversión (Stepper UX)",
-      "Manejo de estado centralizado en Blazor para procesos multi-paso",
-      "Separación clara entre experiencia pública y administración operativa",
+      "Designing conversion-focused guided flows (Stepper UX)",
+      "Centralized state management in Blazor for multi-step processes",
+      "Clear separation between public experience and operational admin",
     ],
-  }
-  ,
+  },
   {
     slug: "inventory-api",
     title: "Inventory API",
