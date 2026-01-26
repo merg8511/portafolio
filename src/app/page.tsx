@@ -262,6 +262,7 @@ export default function Home() {
               src="/images/profile.png"
               alt="Professional portrait of Mario Rodriguez"
               fill
+              sizes="(max-width: 768px) 256px, 320px"
               className="object-cover"
               priority
             />
@@ -312,15 +313,19 @@ export default function Home() {
             <div key={project.slug} className="flex flex-col group">
               <div className="relative overflow-hidden rounded-xl aspect-video mb-4 shadow-lg border border-transparent group-hover:border-emerald-500/30 transition-colors">
                 <Image
-                  src={project.image.src}
-                  alt={project.image.alt}
+                  src={project.images.desktop[0]?.src}
+                  alt={project.images.desktop[0]?.alt}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button className="bg-white text-emerald-500 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50">
-                    Ver Demo
-                  </button>
+                  <a
+                    href={`/projects/${project.slug}`}
+                    className="bg-white text-emerald-500 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:bg-slate-50"
+                  >
+                    Ver Detalles
+                  </a>
                 </div>
               </div>
               <div className="px-2">

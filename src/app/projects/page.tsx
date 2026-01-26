@@ -33,9 +33,10 @@ export default function ProjectsPage() {
                                 {/* Project Image */}
                                 <div className="relative aspect-video overflow-hidden">
                                     <Image
-                                        src={project.image.src}
-                                        alt={project.image.alt}
+                                        src={project.images.desktop[0]?.src}
+                                        alt={project.images.desktop[0]?.alt}
                                         fill
+                                        sizes="(max-width: 640px) 100vw, 50vw"
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>
