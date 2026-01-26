@@ -1,52 +1,49 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "PORTFOLIO | Desarrollador Web",
-    template: "%s | PORTFOLIO",
+    default: "Mario Rodríguez | Full-Stack Developer",
+    template: "%s | Mario Rodríguez",
   },
   description:
-    "Portafolio profesional de desarrollo web. Especializado en Next.js, TypeScript y soluciones modernas.",
+    "Construyo aplicaciones web rápidas y escalables, con UI limpia y APIs robustas. Especializado en .NET y Next.js.",
   keywords: [
     "desarrollador web",
+    "full-stack developer",
+    ".NET",
     "Next.js",
-    "TypeScript",
+    "Blazor",
     "React",
+    "TypeScript",
     "portafolio",
-    "frontend",
-    "fullstack",
   ],
-  authors: [{ name: "Developer" }],
-  creator: "Developer",
+  authors: [{ name: "Mario Rodríguez" }],
+  creator: "Mario Rodríguez",
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://portfolio.vercel.app",
-    siteName: "PORTFOLIO",
-    title: "PORTFOLIO | Desarrollador Web",
+    url: "https://mariorodriguez.dev",
+    siteName: "Mario Rodríguez Portfolio",
+    title: "Mario Rodríguez | Full-Stack Developer",
     description:
-      "Portafolio profesional de desarrollo web. Especializado en Next.js, TypeScript y soluciones modernas.",
+      "Construyo aplicaciones web rápidas y escalables, con UI limpia y APIs robustas.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PORTFOLIO | Desarrollador Web",
+    title: "Mario Rodríguez | Full-Stack Developer",
     description:
-      "Portafolio profesional de desarrollo web. Especializado en Next.js, TypeScript y soluciones modernas.",
+      "Construyo aplicaciones web rápidas y escalables, con UI limpia y APIs robustas.",
   },
   robots: {
     index: true,
@@ -67,15 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-slate-950 text-slate-100 antialiased flex flex-col`}
+        className={`${spaceGrotesk.variable} font-sans min-h-screen bg-[#101622] text-white antialiased flex flex-col`}
       >
-        {/* Radial gradient background overlay */}
-        <div className="pointer-events-none fixed inset-0 opacity-60 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.22),transparent_55%)]" />
-
         <Navbar />
-        <main className="flex-1 pt-16 relative">{children}</main>
+        <main className="flex-1 relative">{children}</main>
         <Footer />
         <SpeedInsights />
       </body>
