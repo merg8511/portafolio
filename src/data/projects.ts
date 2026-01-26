@@ -13,19 +13,44 @@ export type Challenge = {
   solution: string;
 };
 
+// API-specific types
+export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
+export type Endpoint = {
+  method: HttpMethod;
+  path: string;
+  label?: string;
+};
+
+export type ApiPreview = {
+  baseUrl?: string;
+  endpoints: Endpoint[];
+};
+
+export type SampleRequest = {
+  method: string;
+  endpoint: string;
+  headers?: string;
+  body?: string;
+  response?: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
   description: string;
   stack: string[];
   highlights: string[];
-  images: {
+  images?: {
     /** First image is used as preview in home page */
     desktop: ProjectImage[];
     mobile?: ProjectImage;
   };
   repo?: string;
   live?: string;
+
+  // Display type
+  displayType?: "webapp" | "api";
 
   // Extended fields for detailed view
   status?: "completed" | "in-progress" | "maintenance";
@@ -41,6 +66,11 @@ export type Project = {
   architecture?: string[];
   challenges?: Challenge[];
   lessonsLearned?: string[];
+
+  // API-specific fields
+  apiPreview?: ApiPreview;
+  capabilities?: string[];
+  sampleRequest?: SampleRequest;
 };
 
 export const projects: Project[] = [
@@ -112,7 +142,7 @@ export const projects: Project[] = [
     title: "Refugio del Sol — Booking Platform",
     description:
       "Rental booking platform with a guided 3-step flow (dates and guests, extra services, confirmation), conversion-focused responsive UI, and admin panel for operational management.",
-    stack: [".NET 9", "Blazor Server", "MudBlazor", "Entity Framework"],
+    stack: [".NET 10", "Blazor Server", "MudBlazor", "Entity Framework"],
     highlights: [
       "3-step booking flow with validation and final summary",
       "Date-based availability management with booking rules",
@@ -201,21 +231,99 @@ export const projects: Project[] = [
   {
     slug: "inventory-api",
     title: "Inventory API",
+    displayType: "api",
     description:
-      "Cloud-native robust Web API integration for logistics companies with warehouse management and supply chain tracking.",
+      "Cloud-native RESTful API for logistics companies with warehouse management, inventory tracking, and supply chain integration.",
     stack: ["ASP.NET Core", "PostgreSQL", "Docker", "Redis", "RabbitMQ"],
     highlights: [
-      "RESTful API with OpenAPI docs",
-      "Microservices architecture",
-      "Message queue integration",
+      "RESTful API with OpenAPI documentation",
+      "Microservices-ready architecture",
+      "Message queue integration for async operations",
       "Container orchestration with Docker",
+      "Caching layer with Redis",
+      "Structured error handling",
     ],
-    images: {
-      desktop: [
-        { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/create-edit-xKU1jX93TMG73WTX1Dn3PrPyytaPFg.png", alt: "Inventory system architecture diagram" },
-      ],
-    },
     repo: "https://github.com/usuario/inventory-api",
+
+    // Extended fields
+    status: "completed",
+    role: "Backend Developer",
+    projectType: "REST API Service",
+    keyOutput: "OpenAPI + Docker Image",
+
+    problem: "Logistics companies need a reliable API to manage inventory across multiple warehouses with real-time stock updates and integration with external systems.",
+    solution: "Built a scalable REST API with ASP.NET Core following Clean Architecture, implementing caching, message queues, and comprehensive documentation.",
+    result: "Production-ready API handling 10K+ requests/day with 99.9% uptime, integrated with 3 external systems via message queues.",
+
+    stackDetails: [
+      { category: "Runtime", technologies: ["ASP.NET Core 8", "Minimal APIs", "C# 12"] },
+      { category: "Data", technologies: ["PostgreSQL", "EF Core", "Redis Cache"] },
+      { category: "Messaging", technologies: ["RabbitMQ", "MassTransit"] },
+      { category: "DevOps", technologies: ["Docker", "GitHub Actions", "Azure"] },
+    ],
+
+    architecture: [
+      "Clean Architecture with CQRS pattern",
+      "Repository + Unit of Work",
+      "Mediator pattern with MediatR",
+      "Outbox pattern for reliable messaging",
+    ],
+
+    capabilities: [
+      "JWT Authentication",
+      "Role-based Access Control",
+      "Pagination & Filtering",
+      "OpenAPI Documentation",
+      "Request Validation",
+      "Rate Limiting",
+      "Health Checks",
+      "Structured Logging",
+    ],
+
+    apiPreview: {
+      baseUrl: "/api/v1",
+      endpoints: [
+        { method: "GET", path: "/items", label: "List inventory items" },
+        { method: "POST", path: "/items", label: "Create item" },
+        { method: "GET", path: "/items/{id}", label: "Get item by ID" },
+        { method: "PUT", path: "/items/{id}", label: "Update item" },
+        { method: "DELETE", path: "/items/{id}", label: "Delete item" },
+        { method: "GET", path: "/warehouses", label: "List warehouses" },
+        { method: "POST", path: "/transfers", label: "Create transfer" },
+      ]
+    },
+
+    sampleRequest: {
+      method: "POST",
+      endpoint: "/api/v1/items",
+      headers: "Authorization: Bearer <token>\nContent-Type: application/json",
+      body: `{
+  "sku": "WGT-001",
+  "name": "Widget Alpha",
+  "quantity": 500,
+  "warehouseId": "wh-central"
+}`,
+      response: `{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "sku": "WGT-001",
+  "name": "Widget Alpha",
+  "quantity": 500,
+  "warehouseId": "wh-central",
+  "createdAt": "2024-01-15T10:30:00Z"
+}`
+    },
+
+    challenges: [
+      { title: "Real-time stock sync", solution: "Event-driven updates via RabbitMQ with eventual consistency" },
+      { title: "High-volume reads", solution: "Redis caching with cache invalidation on writes" },
+      { title: "External integrations", solution: "Outbox pattern ensuring reliable message delivery" },
+    ],
+
+    lessonsLearned: [
+      "Designing APIs for external consumption with versioning",
+      "Implementing CQRS for read/write optimization",
+      "Managing distributed transactions with Outbox pattern",
+    ],
   },
 ];
 
