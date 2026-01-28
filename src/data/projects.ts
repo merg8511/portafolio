@@ -99,8 +99,8 @@ export const projects: Project[] = [
       ],
       mobile: { src: "https://9jaubfal4qpj0a4o.public.blob.vercel-storage.com/booking/mobile-booking.png", alt: "Mobile view" }
     },
-    repo: "https://placehold.co/1x1/png?text=ADD+REPO+URL",
-    live: "https://placehold.co/1x1/png?text=ADD+LIVE+URL",
+    repo: "https://github.com/merg8511/GCG.Web.Booking",
+    //live: "https://placehold.co/1x1/png?text=ADD+LIVE+URL",
 
     // Extended fields
     status: "in-progress",
@@ -233,17 +233,17 @@ export const projects: Project[] = [
     title: "Inventory API",
     displayType: "api",
     description:
-      "Cloud-native RESTful API for logistics companies with warehouse management, inventory tracking, and supply chain integration.",
-    stack: ["ASP.NET Core", "PostgreSQL", "Docker", "Redis", "RabbitMQ"],
+      "Multi-tenant RESTful API for inventory management with ledger-based tracking, warehouse transfers, and stock reservations following Clean Architecture.",
+    stack: ["ASP.NET Core", "PostgreSQL", "Docker", "EF Core", "JWT"],
     highlights: [
-      "RESTful API with OpenAPI documentation",
-      "Microservices-ready architecture",
-      "Message queue integration for async operations",
-      "Container orchestration with Docker",
-      "Caching layer with Redis",
-      "Structured error handling",
+      "Clean Architecture with 4 layers",
+      "Multi-tenant isolation via JWT claims",
+      "Ledger-based inventory tracking",
+      "Transfer state machine (Draft → Received)",
+      "Stock reservation system with expiration",
+      "Idempotency keys for safe retries",
     ],
-    repo: "https://github.com/usuario/inventory-api",
+    repo: "https://github.com/merg8511/Inventory.Api",
 
     // Extended fields
     status: "completed",
@@ -251,80 +251,97 @@ export const projects: Project[] = [
     projectType: "REST API Service",
     keyOutput: "OpenAPI + Docker Image",
 
-    problem: "Logistics companies need a reliable API to manage inventory across multiple warehouses with real-time stock updates and integration with external systems.",
-    solution: "Built a scalable REST API with ASP.NET Core following Clean Architecture, implementing caching, message queues, and comprehensive documentation.",
-    result: "Production-ready API handling 10K+ requests/day with 99.9% uptime, integrated with 3 external systems via message queues.",
+    problem: "Companies managing inventory across multiple warehouses need a reliable system to track stock movements, handle inter-warehouse transfers, reserve stock for orders, and maintain an immutable audit trail of all transactions.",
+    solution: "Built a multi-tenant REST API with .NET 10 following Clean Architecture. Implemented ledger-based tracking for auditing, a state machine for transfers, and reservation management with automatic tenant isolation.",
+    result: "Production-ready API with multi-tenant support, comprehensive transaction history, automated health checks, and Docker deployment ready for cloud environments.",
 
     stackDetails: [
-      { category: "Runtime", technologies: ["ASP.NET Core 8", "Minimal APIs", "C# 12"] },
-      { category: "Data", technologies: ["PostgreSQL", "EF Core", "Redis Cache"] },
-      { category: "Messaging", technologies: ["RabbitMQ", "MassTransit"] },
-      { category: "DevOps", technologies: ["Docker", "GitHub Actions", "Azure"] },
+      { category: "Runtime", technologies: [".NET 10", "Minimal APIs", "C# 13"] },
+      { category: "Data", technologies: ["PostgreSQL 16", "EF Core 9", "Npgsql"] },
+      { category: "Auth", technologies: ["JWT Bearer", "Policy-based Authorization", "Multi-tenant Claims"] },
+      { category: "DevOps", technologies: ["Docker", "Health Checks", "OpenTelemetry", "Serilog"] },
     ],
 
     architecture: [
-      "Clean Architecture with CQRS pattern",
-      "Repository + Unit of Work",
-      "Mediator pattern with MediatR",
-      "Outbox pattern for reliable messaging",
+      "Clean Architecture (Domain, Application, Infrastructure, API)",
+      "Service Pattern with Interface Contracts",
+      "Result Pattern for Error Handling",
+      "Tenant Isolation via Global Query Filters",
     ],
 
     capabilities: [
       "JWT Authentication",
-      "Role-based Access Control",
+      "Scope-based Authorization",
       "Pagination & Filtering",
-      "OpenAPI Documentation",
-      "Request Validation",
+      "OpenAPI/Swagger Documentation",
+      "FluentValidation",
       "Rate Limiting",
-      "Health Checks",
-      "Structured Logging",
+      "Health Checks (Liveness/Readiness)",
+      "Structured Logging with Correlation IDs",
+      "Idempotency Keys",
+      "OpenTelemetry Tracing",
     ],
 
     apiPreview: {
-      baseUrl: "/api/v1",
+      baseUrl: "/v1",
       endpoints: [
         { method: "GET", path: "/items", label: "List inventory items" },
         { method: "POST", path: "/items", label: "Create item" },
         { method: "GET", path: "/items/{id}", label: "Get item by ID" },
         { method: "PUT", path: "/items/{id}", label: "Update item" },
-        { method: "DELETE", path: "/items/{id}", label: "Delete item" },
+        { method: "DELETE", path: "/items/{id}", label: "Deactivate item" },
         { method: "GET", path: "/warehouses", label: "List warehouses" },
+        { method: "GET", path: "/inventory/balances", label: "Get stock balances" },
+        { method: "POST", path: "/inventory/receipt", label: "Record stock receipt" },
+        { method: "POST", path: "/inventory/issue", label: "Record stock issue" },
         { method: "POST", path: "/transfers", label: "Create transfer" },
+        { method: "POST", path: "/transfers/{id}/commit", label: "Commit transfer" },
+        { method: "POST", path: "/transfers/{id}/ship", label: "Ship transfer" },
+        { method: "POST", path: "/transfers/{id}/receive", label: "Receive transfer" },
+        { method: "POST", path: "/reservations", label: "Create reservation" },
+        { method: "POST", path: "/reservations/{id}/confirm", label: "Confirm reservation" },
       ]
     },
 
     sampleRequest: {
       method: "POST",
-      endpoint: "/api/v1/items",
+      endpoint: "/v1/items",
       headers: "Authorization: Bearer <token>\nContent-Type: application/json",
       body: `{
-        "sku": "WGT-001",
-        "name": "Widget Alpha",
-        "quantity": 500,
-        "warehouseId": "wh-central"
+  "sku": "WIDGET-001",
+  "name": "Industrial Widget",
+  "categoryId": "550e8400-e29b-41d4-a716-446655440000",
+  "unitOfMeasureId": "660e8400-e29b-41d4-a716-446655440001",
+  "costPrice": 15.50,
+  "salePrice": 24.99,
+  "trackingType": "None"
 }`,
       response: `{
-        "id": "550e8400-e29b-41d4-a716-446655440000",
-        "sku": "WGT-001",
-        "name": "Widget Alpha",
-        "quantity": 500,
-        "warehouseId": "wh-central",
-        "createdAt": "2024-01-15T10:30:00Z"
+  "id": "770e8400-e29b-41d4-a716-446655440002",
+  "sku": "WIDGET-001",
+  "name": "Industrial Widget",
+  "categoryId": "550e8400-e29b-41d4-a716-446655440000",
+  "costPrice": 15.50,
+  "salePrice": 24.99,
+  "isActive": true,
+  "createdAt": "2024-01-15T10:30:00Z"
 }`
     },
 
     challenges: [
-      { title: "Real-time stock sync", solution: "Event-driven updates via RabbitMQ with eventual consistency" },
-      { title: "High-volume reads", solution: "Redis caching with cache invalidation on writes" },
-      { title: "External integrations", solution: "Outbox pattern ensuring reliable message delivery" },
+      { title: "Multi-tenant isolation", solution: "JWT claims + EF Core global query filters for automatic tenant filtering" },
+      { title: "Transfer workflow complexity", solution: "State machine pattern with domain methods (Draft → Committed → InTransit → Received)" },
+      { title: "Stock consistency", solution: "Ledger-based transactions with immutable history and optimistic concurrency (RowVersion)" },
+      { title: "Idempotent operations", solution: "Idempotency-Key header with database persistence for safe retries" },
     ],
 
     lessonsLearned: [
-      "Designing APIs for external consumption with versioning",
-      "Implementing CQRS for read/write optimization",
-      "Managing distributed transactions with Outbox pattern",
+      "Implementing multi-tenant architecture with EF Core global filters",
+      "Designing ledger-based inventory systems for auditability",
+      "Building state machines for complex workflow management",
+      "Applying Clean Architecture in .NET Minimal APIs",
     ],
-  },
+  }
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

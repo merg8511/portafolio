@@ -224,7 +224,7 @@ export default function Home() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-slate-900 dark:text-white text-5xl md:text-6xl font-black leading-[1.1] tracking-tighter uppercase">
+          <h1 className="text-white text-5xl md:text-6xl font-black leading-[1.1] tracking-tighter uppercase">
             WEB DEVELOPER <span className="text-emerald-500">.NET + NEXT.JS</span>
           </h1>
 
