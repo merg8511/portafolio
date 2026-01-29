@@ -56,8 +56,8 @@ const whatsappUrl = `https://wa.me/${phone}?text=${text}`;
 const contactMethods = [
     {
         label: "Email",
-        value: "maerodriguezdev@gmail.com",
-        href: "mailto:maerodriguezdev@gmail.com",
+        value: "merg8511@gmail.com",
+        href: "mailto:merg8511@gmail.com",
         icon: <EmailIcon />,
     },
     {
@@ -68,14 +68,14 @@ const contactMethods = [
     },
     {
         label: "GitHub",
-        value: "github.com/maerodriguezdev",
-        href: "https://github.com/maerodriguezdev",
+        value: "github.com/merg8511",
+        href: "https://github.com/merg8511",
         icon: <SiGithub className="w-5 h-5" />,
     },
     {
         label: "LinkedIn",
-        value: "linkedin.com/in/mearodriguezdev",
-        href: "https://linkedin.com/in/mearodriguezdev",
+        value: "linkedin.com/in/mario-rodríguez-812687185",
+        href: "https:www.linkedin.com/in/mario-rodríguez-812687185",
         icon: <SiLinkedin className="w-5 h-5" />,
     },
 ];
