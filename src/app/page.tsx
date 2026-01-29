@@ -2,7 +2,6 @@ import Image from "next/image";
 import {
   SiTypescript,
   SiNextdotjs,
-  SiReact,
   SiDotnet,
   SiPostgresql,
   SiDocker,
@@ -43,18 +42,11 @@ function CloudIcon() {
   );
 }
 
-function MailIcon() {
+
+function EmailCtaIcon() {
   return (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  );
-}
-
-function ScheduleIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
   );
 }
@@ -67,62 +59,10 @@ function ArrowIcon() {
   );
 }
 
-// Tech Stack Icons
-function TypeScriptIcon() {
-  return (
-    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zm14.5 9.75c.612 0 1.154.037 1.627.111v2.111c-.524-.148-1.007-.222-1.447-.222-.748 0-1.31.173-1.685.519-.375.346-.563.837-.563 1.474v3.222h-2.111V9.889h2.111v1.185c.4-.889 1.089-1.324 2.068-1.324zM5.88 9.75h2.111v7.111c0 .914.185 1.583.556 2.007.37.424.945.636 1.722.636.42 0 .827-.05 1.222-.148v1.926c-.444.148-.963.222-1.556.222-1.259 0-2.228-.352-2.907-1.056-.679-.704-1.019-1.741-1.019-3.111V9.75z" />
-    </svg>
-  );
-}
-
-function ReactIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-      <ellipse cx="12" cy="12" rx="10" ry="4" />
-      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
-      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
-      <circle cx="12" cy="12" r="2" fill="currentColor" />
-    </svg>
-  );
-}
-
-function NextJsIcon() {
-  return (
-    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.727 18.04l-5.63-7.55v7.55h-1.63V7.27h1.5l5.5 7.37V7.27h1.63v10.77h-1.37zM12.44 11.28l.85 1.15-1.5 2.01-.85-1.15 1.5-2.01z" />
-    </svg>
-  );
-}
-
 function CSharpIcon() {
   return (
     <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c1.943 0 3.79-.466 5.427-1.29l-5.2-9.01h-.01l3.84-6.65A11.94 11.94 0 0012 0zm-.5 6l3.6 6.25-3.6 6.25L8 12.25 11.5 6zm6.1 3.5h1.5v1h-1.5v1.5h-1v-1.5h-1.5v-1h1.5V8h1v1.5z" />
-    </svg>
-  );
-}
-
-function DotNetIcon() {
-  return (
-    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 3.6c4.639 0 8.4 3.761 8.4 8.4s-3.761 8.4-8.4 8.4S3.6 16.639 3.6 12 7.361 3.6 12 3.6zm-1.8 11.4h3.6v-1.2h-3.6v-1.8h3.6v-1.2h-3.6V9h3.6V7.8h-4.8v7.2z" />
-    </svg>
-  );
-}
-
-function PostgreSQLIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-    </svg>
-  );
-}
-
-function DockerIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9h2v2H8V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9zm-6 3h2v2H8v-2zm3 0h2v2h-2v-2zM5 12h2v2H5v-2zm0-3h2v2H5V9zm16 4c-.5 2.5-2 4-4.5 4H4c-1.5 0-3-1-3-3 0-1.5.5-2.5 1.5-3 0-1 .5-2 1.5-2.5 1-1 2.5-1.5 4-1.5h.5c.5-1 1.5-2 3-2s2.5 1 3 2c2 0 3.5 1 4 2.5 1 .5 1.5 1.5 1.5 3.5z" />
     </svg>
   );
 }
@@ -245,7 +185,7 @@ export default function Home() {
               href="#contact"
               className="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-[#232f48] text-white text-base font-bold tracking-wide hover:bg-[#2d3b5a] transition-colors"
             >
-              Let's Talk
+              Let&apos;s Talk
             </a>
           </div>
 
@@ -308,12 +248,12 @@ export default function Home() {
             <p className="text-emerald-500 font-bold text-sm tracking-widest uppercase mb-2">Portafolio</p>
             <h2 className="text-3xl font-bold tracking-tight">Featured Projects</h2>
           </div>
-          <a
-            href="/projects"
+          <Link
+            href="/projects/"
             className="text-emerald-500 text-sm font-bold flex items-center gap-1 hover:opacity-80 transition-opacity"
           >
             View all <ArrowIcon />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 items-stretch">
@@ -464,10 +404,10 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
 
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter relative z-10">
-            Let's Build Something Together
+            Let&apos;s Build Something Together
           </h2>
           <p className="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto relative z-10">
-            I'm available for new projects and collaborations. If you have an idea, let's make it happen.
+            I&apos;m available for new projects and collaborations. If you have an idea, let&apos;s make it happen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-20">
             <a
@@ -478,9 +418,9 @@ export default function Home() {
             >
               <SiWhatsapp /> Send Message
             </a>
-            <button className="bg-[#0a192f] text-white border-2 border-transparent px-8 py-4 rounded-lg font-bold text-lg hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-xl min-w-[200px]">
-              <ScheduleIcon /> Schedule a Call
-            </button>
+            <Link href="/contact" className="bg-[#0a192f] text-white border-2 border-transparent px-8 py-4 rounded-lg font-bold text-lg hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-xl min-w-[200px]">
+              <EmailCtaIcon /> Send a Message
+            </Link>
           </div>
         </div>
       </section>
