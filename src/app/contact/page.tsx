@@ -1,108 +1,323 @@
-import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
+"use client";
 
-export const metadata: Metadata = {
-    title: "CONTACT",
-    description:
-        "Get in touch for web development projects, collaborations, or inquiries.",
-};
+import { useState, FormEvent } from "react";
+import Reveal from "@/components/Reveal";
+import { SiGithub, SiLinkedin, SiWhatsapp } from "react-icons/si";
+
+// ============================================
+// ICONS
+// ============================================
+
+function EmailIcon() {
+    return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+        </svg>
+    );
+}
+
+function SendIcon() {
+    return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+            />
+        </svg>
+    );
+}
+
+function SpinnerIcon() {
+    return (
+        <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+        </svg>
+    );
+}
+
+function CheckIcon() {
+    return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+    );
+}
+
+// ============================================
+// DATA
+// ============================================
+
+const phone = "50372330330";
+const text = encodeURIComponent("Hi Mario! I saw your portfolio and I'd like to discuss a project.");
+const whatsappUrl = `https://wa.me/${phone}?text=${text}`;
 
 const contactMethods = [
     {
         label: "Email",
-        value: "contact@example.com",
-        href: "mailto:contact@example.com",
-        icon: (
-            <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-            >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-            </svg>
-        ),
+        value: "maerodriguezdev@gmail.com",
+        href: "mailto:maerodriguezdev@gmail.com",
+        icon: <EmailIcon />,
+    },
+    {
+        label: "WhatsApp",
+        value: "+503 7233 0330",
+        href: whatsappUrl,
+        icon: <SiWhatsapp className="w-5 h-5" />,
     },
     {
         label: "GitHub",
-        value: "github.com/usuario",
-        href: "https://github.com/usuario",
-        icon: (
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-        ),
+        value: "github.com/maerodriguezdev",
+        href: "https://github.com/maerodriguezdev",
+        icon: <SiGithub className="w-5 h-5" />,
     },
     {
         label: "LinkedIn",
-        value: "linkedin.com/in/usuario",
-        href: "https://linkedin.com/in/usuario",
-        icon: (
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-        ),
+        value: "linkedin.com/in/mearodriguezdev",
+        href: "https://linkedin.com/in/mearodriguezdev",
+        icon: <SiLinkedin className="w-5 h-5" />,
     },
 ];
 
+// ============================================
+// FORM COMPONENT
+// ============================================
+
+type FormStatus = "idle" | "loading" | "success" | "error";
+
+interface FormData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}
+
+function ContactForm() {
+    const [formData, setFormData] = useState<FormData>({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+    const [status, setStatus] = useState<FormStatus>("idle");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setStatus("loading");
+        setErrorMessage("");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Failed to send message");
+            }
+
+            setStatus("success");
+            setFormData({ name: "", email: "", subject: "", message: "" });
+
+            // Reset after 5 seconds
+            setTimeout(() => setStatus("idle"), 5000);
+        } catch (error) {
+            setStatus("error");
+            setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+        }
+    };
+
+    const inputClasses = "w-full px-4 py-3 bg-[#1a2333] border border-[#232f48] rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all";
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+                        Name <span className="text-emerald-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className={inputClasses}
+                        placeholder="Your name"
+                        disabled={status === "loading"}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                        Email <span className="text-emerald-500">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className={inputClasses}
+                        placeholder="your@email.com"
+                        disabled={status === "loading"}
+                    />
+                </div>
+            </div>
+
+            <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2">
+                    Subject <span className="text-slate-500">(optional)</span>
+                </label>
+                <input
+                    type="text"
+                    id="subject"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className={inputClasses}
+                    placeholder="What's this about?"
+                    disabled={status === "loading"}
+                />
+            </div>
+
+            <div>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
+                    Message <span className="text-emerald-500">*</span>
+                </label>
+                <textarea
+                    id="message"
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className={`${inputClasses} resize-none`}
+                    placeholder="Tell me about your project..."
+                    disabled={status === "loading"}
+                />
+            </div>
+
+            {/* Error Message */}
+            {status === "error" && (
+                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+                    {errorMessage}
+                </div>
+            )}
+
+            {/* Success Message */}
+            {status === "success" && (
+                <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 text-sm flex items-center gap-2">
+                    <CheckIcon />
+                    Message sent successfully! I&apos;ll get back to you soon.
+                </div>
+            )}
+
+            {/* Submit Button */}
+            <button
+                type="submit"
+                disabled={status === "loading" || status === "success"}
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-emerald-500/20"
+            >
+                {status === "loading" ? (
+                    <>
+                        <SpinnerIcon />
+                        Sending...
+                    </>
+                ) : status === "success" ? (
+                    <>
+                        <CheckIcon />
+                        Sent!
+                    </>
+                ) : (
+                    <>
+                        <SendIcon />
+                        Send Message
+                    </>
+                )}
+            </button>
+        </form>
+    );
+}
+
+// ============================================
+// PAGE COMPONENT
+// ============================================
+
 export default function ContactPage() {
     return (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 py-16 sm:py-24">
             <Reveal>
-                <header className="mb-12">
-                    <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-100">
-                        CONTACT
+                <header className="mb-12 text-center">
+                    <p className="text-emerald-500 font-bold text-sm tracking-widest uppercase mb-2">
+                        Get in Touch
+                    </p>
+                    <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4 text-white uppercase">
+                        Contact
                     </h1>
-                    <p className="text-slate-400 max-w-2xl">
-                        Have a project in mind or just want to say hello? Feel free to
-                        reach out. I typically respond within 24-48 hours.
+                    <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+                        Have a project in mind or just want to say hello? I&apos;d love to hear from you.
+                        Fill out the form below and I&apos;ll get back to you within 24-48 hours.
                     </p>
                 </header>
             </Reveal>
 
-            <Reveal delay={0.1}>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {contactMethods.map((method) => (
-                        <a
-                            key={method.label}
-                            href={method.href}
-                            target={method.href.startsWith("mailto") ? undefined : "_blank"}
-                            rel={method.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                            className="group flex items-start gap-4 p-6 bg-slate-900/50 border border-white/10 rounded-2xl hover:border-cyan-400/30 hover:bg-slate-900/80 transition-all"
-                        >
-                            <div className="w-10 h-10 flex items-center justify-center text-cyan-400 bg-cyan-400/10 rounded-xl group-hover:bg-cyan-400/15 transition-colors">
-                                {method.icon}
-                            </div>
-                            <div>
-                                <h2 className="font-semibold mb-1 text-slate-100">{method.label}</h2>
-                                <p className="text-sm text-slate-400">{method.value}</p>
-                            </div>
-                        </a>
-                    ))}
-                </div>
-            </Reveal>
+            <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+                {/* Contact Form - Left Side */}
+                <Reveal delay={0.1} className="lg:col-span-3">
+                    <div className="glass-card p-8 rounded-2xl">
+                        <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span className="text-emerald-500"><EmailIcon /></span>
+                            Send a Message
+                        </h2>
+                        <ContactForm />
+                    </div>
+                </Reveal>
 
-            {/* CTA Section */}
-            <Reveal delay={0.2}>
-                <section className="mt-16 p-8 bg-slate-900/50 border border-white/10 rounded-2xl text-center">
-                    <h2 className="text-xl font-semibold mb-2 text-slate-100">Ready to start?</h2>
-                    <p className="text-slate-400 mb-6 max-w-lg mx-auto">
-                        Tell me about your project and let&apos;s find the best way to
-                        collaborate.
-                    </p>
-                    <a
-                        href="mailto:contact@example.com"
-                        className="inline-flex items-center justify-center px-6 py-3 bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-medium rounded-xl hover:bg-cyan-400/15 hover:border-cyan-400/30 transition-all"
-                    >
-                        SEND EMAIL
-                    </a>
-                </section>
-            </Reveal>
+                {/* Contact Info - Right Side */}
+                <Reveal delay={0.2} className="lg:col-span-2">
+                    <div className="space-y-4">
+                        <h2 className="text-xl font-bold text-white mb-6">Other Ways to Connect</h2>
+                        {contactMethods.map((method) => (
+                            <a
+                                key={method.label}
+                                href={method.href}
+                                target={method.href.startsWith("mailto") ? undefined : "_blank"}
+                                rel={method.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                                className="group flex items-center gap-4 p-5 glass-card rounded-xl hover:border-emerald-500/50 transition-all"
+                            >
+                                <div className="w-10 h-10 flex items-center justify-center text-emerald-500 bg-emerald-500/10 rounded-xl group-hover:bg-emerald-500/20 transition-colors">
+                                    {method.icon}
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold text-white group-hover:text-emerald-500 transition-colors">
+                                        {method.label}
+                                    </h3>
+                                    <p className="text-sm text-slate-400">{method.value}</p>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+
+                    {/* Availability Badge */}
+                    <div className="mt-8 p-6 glass-card rounded-xl">
+                        <div className="flex items-center gap-3 mb-3">
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                            </span>
+                            <span className="text-emerald-500 font-bold text-sm uppercase tracking-widest">
+                                Available for Projects
+                            </span>
+                        </div>
+                        <p className="text-slate-400 text-sm">
+                            Currently accepting new projects. Let&apos;s discuss how I can help bring your ideas to life.
+                        </p>
+                    </div>
+                </Reveal>
+            </div>
         </div>
     );
 }
