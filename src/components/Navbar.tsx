@@ -6,7 +6,7 @@ import { useState } from "react";
 const navLinks = [
     { href: "#projects", label: "Projects" },
     { href: "#stack", label: "Stack" },
-    { href: "#contact", label: "Contact" },
+    { href: "/contact", label: "Contact" },
 ];
 
 // Logo SVG component

@@ -43,10 +43,10 @@ function CloudIcon() {
 }
 
 
-function ScheduleIcon() {
+function EmailCtaIcon() {
   return (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
     </svg>
   );
 }
@@ -418,9 +418,9 @@ export default function Home() {
             >
               <SiWhatsapp /> Send Message
             </a>
-            <button className="bg-[#0a192f] text-white border-2 border-transparent px-8 py-4 rounded-lg font-bold text-lg hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-xl min-w-[200px]">
-              <ScheduleIcon /> Schedule a Call
-            </button>
+            <Link href="/contact" className="bg-[#0a192f] text-white border-2 border-transparent px-8 py-4 rounded-lg font-bold text-lg hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-xl min-w-[200px]">
+              <EmailCtaIcon /> Send a Message
+            </Link>
           </div>
         </div>
       </section>
